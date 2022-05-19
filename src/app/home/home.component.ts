@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class HomeComponent implements OnInit {
+
  
-  constructor(
+  constructor(private myRoute: Router
   //  private http: HttpClient
     ) { 
-   
+    //  this.myRoute.navigate(['users']);
 
   }
   // public mhd(){

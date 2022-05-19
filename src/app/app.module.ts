@@ -6,19 +6,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import {MatTableModule} from '@angular/material/table';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'users', component: UsersComponent },
  // { path: 'ali', component: HomeComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    UsersComponent
   ],
   imports: [
     HttpClientModule,
+    MatTableModule,
     MatSliderModule,
     BrowserModule,
     BrowserAnimationsModule,
