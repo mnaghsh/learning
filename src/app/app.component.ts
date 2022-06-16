@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'my-app';
-
+  flg=false
   constructor(private myRoute: Router) {
+    
     // this.myRoute.navigate(['home']);
+  }
+  toggleFunc() {
+    this.flg = !this.flg
   }
 
 }

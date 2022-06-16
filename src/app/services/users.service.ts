@@ -6,12 +6,15 @@ import { ConfigService } from './config.service';
   providedIn: 'root'
 })
 export class UsersService {
+  selectAllListOfcheckListsOptions() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(public configService:ConfigService) { }
 
 
-  public selectAllListOfcheckListsOptions(): Observable<any> {
-    return this.configService.get('HseECheckListOptions');
+  public selectAllListOfcheckLists(): Observable<any> {
+    return this.configService.get('HseECheckLists');
   }
 
 }

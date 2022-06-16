@@ -8,10 +8,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import {MatTableModule} from '@angular/material/table';
+import { GridComponent } from './grid/grid.component';
+import {MatButtonModule} from '@angular/material/button';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'grid', component: GridComponent },
  // { path: 'ali', component: HomeComponent },
 ];
 
@@ -19,11 +23,13 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    GridComponent
   ],
   imports: [
     HttpClientModule,
     MatTableModule,
+    MatButtonModule,
     MatSliderModule,
     BrowserModule,
     BrowserAnimationsModule,
