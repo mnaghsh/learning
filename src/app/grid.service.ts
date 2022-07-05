@@ -9,7 +9,7 @@ export class GridService {
 
   constructor(private configService: ConfigService) {
 
-  
+
 
   }
 
@@ -17,8 +17,8 @@ export class GridService {
     return this.configService.get('HseECheckLists');
   }
 
-  public insertAllListOfcheck(body:any): Observable<any> {
-    return this.configService.post('HseECheckLists',body);
+  public insertAllListOfcheck(body: any): Observable<any> {
+    return this.configService.post('HseECheckLists', body);
   }
 
 

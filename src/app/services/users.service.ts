@@ -10,11 +10,21 @@ export class UsersService {
     throw new Error('Method not implemented.');
   }
 
-  constructor(public configService:ConfigService) { }
+  constructor(public configService: ConfigService) { }
 
+  public selectAllListOfclients(): Observable<any> {
+    return this.configService.get('Clients');
+  }
 
-  public selectAllListOfcheckLists(): Observable<any> {
-    return this.configService.get('HseECheckLists');
+  public insertAllListOfclients(body: any): Observable<any> {
+    return this.configService.post('Clients', body);
+  }
+  public updateListOfclients(id: any, body: any): Observable<any> {
+    return this.configService.put('Clients/' + id, body);
+  }
+
+  public deleteClients(id:any):Observable<any>{
+    return this.configService.delete('Clients/'+id);
   }
 
 }

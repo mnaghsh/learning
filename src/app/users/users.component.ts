@@ -1,59 +1,88 @@
 
-import {Component} from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 import { UsersService } from '../services/users.service';
 
-// export interface PeriodicElement {
-//   // name: string;
-//   // position: number;
-//   // weight: number;
-//   // symbol: string;
-// }
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
-
-/**
- * @title Basic use of `<table mat-table>`
- */
- @Component({
+@Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  dataSource: any;
+  form;
+  idForDelete: any;
+  myControl = new FormControl();
+  message: string;
+  // @ViewChild('name') name: any;
+  //@ViewChild('family') family: any;
+  constructor(private fb: FormBuilder,
+    private usersService: UsersService,
+    private configService: ConfigService,
+    private myRoute: Router) {
+      this.message=""
 
-  constructor(
-    public usersService: UsersService
-    //  private http: HttpClient
-  ) {
-
-    // this.usersService.selectAllListOfcheckLists().subscribe(
-    //   (success)=>{
-    //      console.log('success',success)
-    //      this.dataSource = new MatTableDataSource(success);
-
-    //   }
-    // )
-    //  this.myRoute.navigate(['users']);
-
+    this.form = fb.group({
+      name: ['', Validators.required],
+      family: ['', Validators.required],
+      id: ['']
+    });
   }
 
+  ngOnInit() {
+  }
 
-  displayedColumns: string[] = ['namChkHecli'];
-  //dataSource = ELEMENT_DATA;
+  public insertAndUpdate() {
+    debugger
+    if (this.form.valid) {
+
+      if (this.form.value.id) {
+        let bodyForUpdate = {
+          "id": this.form.value.id,
+          "name": this.form.value.name,
+          "family": this.form.value.family
+        }
+        this.usersService.updateListOfclients(this.form.value.id, bodyForUpdate).subscribe(
+          (success) => {
+
+          },
+          (error) => {
+            console.log('err', error)
+          }
+        )
+
+      }
+
+      else {
+        let body = {
+
+          "name": this.form.value.name,
+          "family": this.form.value.family
+        }
+        this.usersService.insertAllListOfclients(body).subscribe(
+          (success) => {
+            debugger
+          }
+        )
+      }
+    }
+  }
+  public deleteRow() {
+    debugger
+    this.idForDelete
+    this.usersService.deleteClients(this.idForDelete).subscribe(
+      (sucess) => {
+        this.message = "موفق"
+        this.configService.flag=true
+      },
+      (error) => {
+
+      }
+    )
+  }
+
 }
-
-

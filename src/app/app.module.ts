@@ -10,6 +10,8 @@ import { UsersComponent } from './users/users.component';
 import {MatTableModule} from '@angular/material/table';
 import { GridComponent } from './grid/grid.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -29,8 +31,11 @@ const routes: Routes = [
   imports: [
     HttpClientModule,
     MatTableModule,
+    ReactiveFormsModule ,
     MatButtonModule,
     MatSliderModule,
+    MatInputModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     [RouterModule.forRoot(routes)],
